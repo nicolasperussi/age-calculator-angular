@@ -1,0 +1,90 @@
+<div id="container">
+  <form id="form" [formGroup]="birthdayForm" (ngSubmit)="onSubmit()">
+    <div class="input-wrapper">
+      <p
+        [class.error]="
+          getValidationMessage('day') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+      >
+        DAY
+      </p>
+      <input
+        [class.error]="
+          getValidationMessage('day') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+        type="number"
+        placeholder="DD"
+        formControlName="day"
+      />
+      @if (getValidationMessage('day')) {
+      <p class="error error-message">{{ getValidationMessage("day") }}</p>
+      }
+    </div>
+    <div class="input-wrapper">
+      <p
+        [class.error]="
+          getValidationMessage('month') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+      >
+        MONTH
+      </p>
+      <input
+        [class.error]="
+          getValidationMessage('month') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+        type="number"
+        placeholder="MM"
+        formControlName="month"
+      />
+      @if (getValidationMessage('month')) {
+      <p class="error error-message">{{ getValidationMessage("month") }}</p>
+      }
+    </div>
+    <div class="input-wrapper">
+      <p
+        [class.error]="
+          getValidationMessage('year') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+      >
+        YEAR
+      </p>
+      <input
+        [class.error]="
+          getValidationMessage('year') != null ||
+          birthdayForm.hasError('invalidDate') ||
+          birthdayForm.hasError('futureDate')
+        "
+        type="number"
+        placeholder="YYYY"
+        formControlName="year"
+      />
+      @if (getValidationMessage('year')) {
+      <p class="error error-message">{{ getValidationMessage("year") }}</p>
+      }
+    </div>
+  </form>
+  <div id="global-errors">
+    @if (birthdayForm.hasError('invalidDate')) {
+    <p>The date must be valid.</p>
+    } @if (birthdayForm.hasError('futureDate')) {
+    <p>The date must be in the past.</p>
+    }
+  </div>
+  <div id="submit">
+    <div class="hr"></div>
+    <button type="submit" form="form">
+      <img src="../../../assets/images/icon-arrow.svg" alt="" />
+    </button>
+  </div>
+  <app-age-calculator [age]="age" />
+</div>
